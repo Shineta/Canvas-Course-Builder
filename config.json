@@ -1,0 +1,17 @@
+// Assuming you have a config.json file
+const fs = require('fs');
+
+app.post('/update-config', (req, res) => {
+    const newConfig = req.body; // Get new settings from request body
+
+    // Read current config
+    const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+
+    // Update config with new settings
+    Object.assign(config, newConfig);
+
+    // Write updated config back to file
+    fs.writeFileSync('config.json', JSON.stringify(config, null, 2), 'utf8');
+
+    res.send('Configuration updated successfully.');
+});

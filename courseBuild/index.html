@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Configurator</title>
+    <!-- Bootstrap CSS Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Canvas Configuration</h1>
+        <form id="configForm">
+            <div class="mb-3">
+                <label for="canvasDomain" class="form-label">Canvas Domain</label>
+                <input type="text" class="form-control" id="canvasDomain" required>
+            </div>
+            <div class="mb-3">
+                <label for="accessToken" class="form-label">Access Token</label>
+                <input type="text" class="form-control" id="accessToken" required>
+            </div>
+            <div class="mb-3">
+                <label for="courseId" class="form-label">Course ID</label>
+                <input type="text" class="form-control" id="courseId" required>
+            </div>
+            <div class="mb-3">
+                <label for="spreadsheetPath" class="form-label">Spreadsheet Path</label>
+                <input type="text" class="form-control" id="spreadsheetPath" required>
+            </div>
+            <div class="mb-3">
+                <label for="coursePrefix" class="form-label">Course Prefix</label>
+                <input type="text" class="form-control" id="coursePrefix" required>
+            </div>
+            <div class="mb-3">
+                <label for="moduleItemsPath" class="form-label">Module Items Path</label>
+                <input type="text" class="form-control" id="moduleItemsPath" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Configuration</button>
+        </form>
+    </div>
+    <div class="container mt-5">
+        <h1>Canvas Configuration</h1>
+        <form id="configForm">
+            <!-- ... (form fields) ... -->
+            <button type="submit" class="btn btn-primary">Save Configuration</button>
+            <!-- Add the "Build Course" button below the form -->
+            <button type="button" class="btn btn-success" id="buildCourseBtn">Build Course</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JavaScript -->
+<script src="configurator.js"></script>
+<script src="test.js"></script>
+<script>
+    document.getElementById('buildCourseBtn').addEventListener('click', () => {
+        fetch('http://localhost:3000/build-course', {
+            method: 'GET',
+        })
+        .then((response) => response.text())
+        .then((data) => {
+            console.log(data); // Output the response from the server
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+</script>
+
+</body>
+</html>

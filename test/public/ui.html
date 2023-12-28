@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <form id="course-builder-form">
+            <div class="form-group">
+                <label>Course Number:</label>
+                <input type="text" class="form-control" id="course-number" required>
+            </div>
+            <div class="form-group">
+                <label>Canvas Domain:</label>
+                <input type="text" class="form-control" id="canvas-domain" required>
+            </div>
+            <div class="form-group">
+                <label>Access Key:</label>
+                <input type="password" class="form-control" id="access-key" required>
+            </div>
+            <div class="form-group">
+                <label>Course Prefix:</label>
+                <input type="text" class="form-control" id="course-prefix" required>
+            </div>
+            <div class="form-group">
+                <label>Spreadsheet File:</label>
+                <input type="file" class="form-control" id="spreadsheet-file">
+            </div>
+            <div class="form-group">
+                <label>Or Spreadsheet URL:</label>
+                <input type="url" class="form-control" id="spreadsheet-url">
+            </div>
+            <button type="submit" class="btn btn-primary" id="build-button">Build Course</button>
+            <button type="button" class="btn btn-info" id="shell-build-button">Build Shell</button>
+            <button type="button" class="btn btn-secondary" id="cancel-button">Cancel</button>
+        </form>
+    </div>
+    <script>
+//         document.addEventListener('DOMContentLoaded', function() {
+//     // Function to simulate form submission
+//     async function testFormSubmission() {
+//         // Simulate input values
+//         const courseNumber = '1234';
+//         const canvasDomain = 'https://example.instructure.com';
+//         const accessKey = 'myAccessKey';
+//         const coursePrefix = 'COURSE';
+//         const spreadsheetUrl = 'https://example.com/spreadsheet.xlsx';
+
+//         // Assign these values to form elements
+//         document.getElementById('course-number').value = courseNumber;
+//         document.getElementById('canvas-domain').value = canvasDomain;
+//         document.getElementById('access-key').value = accessKey;
+//         document.getElementById('course-prefix').value = coursePrefix;
+//         document.getElementById('spreadsheet-url').value = spreadsheetUrl;
+
+//         // Simulate form submission
+//         document.getElementById('build-button').click();
+//     }
+
+//     // Run the test
+//     testFormSubmission().then(() => {
+//         console.log('Test completed');
+//     }).catch(error => {
+//         console.error('Test failed:', error);
+//     });
+// });
+
+    </script>
+</body>
+</html>
