@@ -9,6 +9,15 @@ const shellBuildFilePath = '/workspaces/Canvas-Course-Builder/courseBuild/shellB
 const newScriptFilePath = '/workspaces/Canvas-Course-Builder/courseBuild/newScript.js';
 const updatePointsFilePath = '/workspaces/Canvas-Course-Builder/courseBuild/updatePoints.js';
 const teacherNoteFilePath = '/workspaces/Canvas-Course-Builder/courseBuild/teacherNote.js';
+const orgHeadersFilePath = '/workspaces/Canvas-Course-Builder/courseBuild/orgHeaders.js';
+const addHeadersFilePath = '/workspaces/Canvas-Course-Builder/courseBuild/addHeaders.js';
+const orderTestFilePath = '/workspaces/Canvas-Course-Builder/courseBuild/QA/orderTest.js'
+const addiFrames2FilePath = '/workspaces/Canvas-Course-Builder/courseBuild/addiFrames2.js';
+const resourceCollectorFilePath = '/workspaces/Canvas-Course-Builder/courseBuild/resourceCollector.js';
+const resourceCreatorFilePath = '/workspaces/Canvas-Course-Builder/courseBuild/resourceCreator.js';
+
+
+
 
 // Function to run a Node.js script synchronously
 function runScriptSynchronously(filePath) {
@@ -34,6 +43,12 @@ function runScriptSynchronously(filePath) {
   // Run the scripts sequentially
   // runScriptSynchronously(shellBuildFilePath);
   runScriptSynchronously(newScriptFilePath);
+  runScriptSynchronously(addiFrames2FilePath);
   runScriptSynchronously(updatePointsFilePath);
   runScriptSynchronously(teacherNoteFilePath);
+  runScriptSynchronously(addHeadersFilePath);
+  runScriptSynchronously(orgHeadersFilePath);
+  // runScriptSynchronously(orderTestFilePath);
+  runScriptSynchronously(orgHeadersFilePath);
+  // runScriptSynchronously(orderTestFilePath);
   

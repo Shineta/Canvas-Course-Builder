@@ -576,7 +576,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Import the configuration file
-const config = require('./config.js');
+const config = require('/workspaces/Canvas-Course-Builder/courseBuild/config.js');
 
 // Access the shared variables
 const axios = config.axios;
@@ -618,7 +618,35 @@ async function getSpreadsheetOrder(filePath) {
     });
 }
 
-// ... [other existing functions like getCurrentCanvasOrder, listAllModuleItems, etc.]
+
+// Function to process spreadsheet data and add items to modules
+async function processSpreadsheetAndAddItems(courseId, filePath) {
+    try {
+        const jsonData = await convertSpreadsheetToJson(filePath);
+
+        for (const item of jsonData) {
+            const moduleName = item['NAME OF CANVAS ASSIGNMENT GROUP & ASSOCIATED MODULE']; // Change to the actual column name in your spreadsheet
+            const itemTitle = item['DISPLAY TITLE for course build'];
+            const itemType = item.Category === 'Header' ? 'SubHeader' : 'Assignment';
+
+            if (moduleName) {
+                const moduleId = await findModuleIdByName(courseId, moduleName);
+
+                if (moduleId) {
+                    await addItemToModule(courseId, moduleId, itemTitle, itemType);
+                } else {
+                    console.log(`Module named '${moduleName}' not found.`);
+                }
+            } else {
+                console.log('Module name is missing for an item.');
+            }
+        }
+
+        // Rest of your code...
+    } catch (error) {
+        console.error('Error processing spreadsheet and adding items:', error);
+    }
+}
 
 // New functions for comparing and adjusting headers
 async function compareAndAdjustHeaders(courseId) {
@@ -861,11 +889,50 @@ async function getRequiredItemsFromSpreadsheet(filePath) {
     }
 }
 
+// Function to retrieve all modules for a course
+async function getAllModulesForCourse(courseId) {
+    try {
+        const url = `${canvasDomain}/api/v1/courses/${courseId}/modules`;
+        const response = await axios.get(url, {
+            headers: { 'Authorization': `Bearer ${accessToken}` },
+            params: { per_page: 100 }
+        });
+        return response.data.map(module => ({
+            id: module.id,
+            name: module.name
+        }));
+    } catch(error) {
+        console.error(`Error retrieving modules for course ID ${courseId}:`, error);
+        return [];
+    }
+}
+
 
 // Main Execution Function
 (async () => {
     const modules = await getAllModulesForCourse(courseId);
     const requiredItems = await getRequiredAndHeaderItems(spreadsheetPath);
+    
+    if (modules.length === 0) {
+        console.error('No modules found for the specified course.');
+        return;
+    }
+    
+    for (const module of modules) {
+        if (module.name && module.id) {
+            console.log(`Processing module: ${module.name} (ID: ${module.id})`);
+            
+            // Define moduleId here
+            const moduleId = module.id;
+            
+ 
+            // await listAllModuleItems(courseId, moduleId);
+            await listAllModuleItems(courseId, moduleId);
+            // Additional processing if needed
+        } else {
+            console.log('Skipping an undefined module.');
+        }
+    }
 
     if (modules.length === 0) {
         console.error('No modules found for the specified course.');
@@ -882,7 +949,7 @@ async function getRequiredItemsFromSpreadsheet(filePath) {
         }
     }
 
-    await listAllModuleItems(courseId, moduleId);
+   
     await compareAndAdjustHeaders(courseId);
     await createComparisonTable(courseId, moduleName, moduleId, requiredItems);
 

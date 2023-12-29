@@ -4,6 +4,7 @@
     "body-parser": "^1.20.2",
     "bootstrap": "^5.3.2",
     "canvas-api-wrapper": "^3.3.5",
+    "cli-table": "^0.3.11",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "execa": "^8.0.1",
@@ -11,8 +12,12 @@
     "insomnia": "^0.0.1",
     "multer": "^1.4.5-lts.1",
     "read-excel-file": "^5.7.1",
+    "table": "^6.8.1",
+    "url": "^0.11.3",
+    "utils": "^0.3.1",
     "uuid": "^9.0.1",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "xlsx-populate": "^1.21.0"
   },
   "devDependencies": {
     "chai": "^4.3.10",
